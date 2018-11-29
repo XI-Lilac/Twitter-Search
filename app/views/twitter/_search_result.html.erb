@@ -1,0 +1,33 @@
+<table>
+	<thead>
+		<tr>
+			<td>アイコン</td>
+			<td>名前</td>
+			<td>tweet内容</td>
+			<td>リツイート数</td>
+			<td>いいね数</td>
+			<td>画像</td>
+		</tr>
+	</thead>
+	<tbody>
+		<% @tw_result.tweet.each do |tweet| %>	
+
+		<% media_urls = tweet.media.map{|t|
+          	t.media_url_https.to_s
+          } %>
+
+			<tr>
+				<td><img src="<%= tweet.user.profile_image_url %>" alt="icon"></td>
+				<td><%= tweet.user.name %></td>
+				<td><%= link_to(tweet.full_text, "https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}",class: "tweet_text"  ) %></td>
+				<td><%= tweet.retweet_count %></td>
+				<td><%= tweet.favorite_count %></td>
+				<td><% media_urls.each do |t|%>
+					<%= image_tag(t,class: "tweet_image") %>
+					<% end %>
+				</td>
+
+			</tr>
+		<% 	end %>
+	</tbody>
+</table>

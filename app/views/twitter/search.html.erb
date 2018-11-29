@@ -1,0 +1,20 @@
+<% if flash[:error] %>
+  <p><%= flash[:error] %></p>
+<% end %>
+<h1>検索ワードを入力してください</h1>
+<p>最近のツイートから検索します。</p>
+
+<%= form_with  model: @tw_result, url: root_path, method: :get, local: true do |f| %>
+	<div class="form">
+		<%= f.label :word, "検索ワード"%>
+		<%= f.text_field :word, name: :word, placeholder: '検索ワード' %>
+		<%= f.submit 'Search'%>
+	</div>
+	
+<% end %>
+
+<div id = "search_result">
+	<% if @tw_result.word.present? %>
+	<%= render partial: "search_result" %>
+	<% end %>
+</div>
