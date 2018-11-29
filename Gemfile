@@ -64,4 +64,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "twitter"
 
+# 環境変数を.envに設定できるようになる。
 gem 'dotenv-rails'
